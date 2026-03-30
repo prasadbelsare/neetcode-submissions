@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int n=nums.size();
+        int l=0;
+        int r=0;
+        int minWindow=INT_MAX;
+        int sum=0;
+        while(r<n){
+        sum+=nums[r];
+        while(sum-nums[l]>=target){
+            sum-=nums[l];
+            l++;
+        }
+        if(sum>=target){
+            minWindow=min(r-l+1,minWindow);
+        }
+        r++;
+        }
+        return minWindow==INT_MAX?0:minWindow;
+    }
+};
